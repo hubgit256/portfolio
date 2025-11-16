@@ -53,4 +53,85 @@ document.addEventListener('DOMContentLoaded', function () {
     icon.setAttribute('tabindex', '0');
   });
 
+  // --- Letter-by-letter typing animation for social labels ---
+  const iconWrappers = document.querySelectorAll('.social-icon-wrapper');
+  
+  function typeLabel(element, text, speed = 60, timeoutRef) {
+    // Clear any existing animation
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
+    element.textContent = '';
+    let i = 0;
+    
+    function type() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        timeoutRef.current = setTimeout(type, speed);
+      } else {
+        timeoutRef.current = null;
+      }
+    }
+    type();
+  }
+  
+  function clearLabel(element, timeoutRef) {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    element.textContent = '';
+  }
+  
+  iconWrappers.forEach(wrapper => {
+    const icon = wrapper.querySelector('.social-icon');
+    const label = wrapper.querySelector('.social-label');
+    const labelText = icon.getAttribute('data-label') || '';
+    const typingTimeout = { current: null };
+    let touchTimer = null;
+    
+    // Mouse events
+    icon.addEventListener('mouseenter', () => {
+      clearLabel(label, typingTimeout);
+      setTimeout(() => typeLabel(label, labelText, 60, typingTimeout), 50);
+    });
+    
+    icon.addEventListener('mouseleave', () => {
+      clearLabel(label, typingTimeout);
+    });
+    
+    // Touch events
+    icon.addEventListener('touchstart', (e) => {
+      clearLabel(label, typingTimeout);
+      setTimeout(() => typeLabel(label, labelText, 60, typingTimeout), 50);
+      
+      if (touchTimer) clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => {
+        clearLabel(label, typingTimeout);
+      }, 3000);
+    });
+    
+    icon.addEventListener('touchend', () => {
+      if (touchTimer) {
+        clearTimeout(touchTimer);
+        touchTimer = setTimeout(() => {
+          clearLabel(label, typingTimeout);
+        }, 2000);
+      }
+    });
+    
+    // Focus events for keyboard navigation
+    icon.addEventListener('focus', () => {
+      clearLabel(label, typingTimeout);
+      setTimeout(() => typeLabel(label, labelText, 60, typingTimeout), 50);
+    });
+    
+    icon.addEventListener('blur', () => {
+      clearLabel(label, typingTimeout);
+    });
+  });
+
 });

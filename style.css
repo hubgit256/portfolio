@@ -480,8 +480,16 @@ ul {
   bottom: 26px;
   right: 28px;
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
   z-index: 50;
+}
+
+.social-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .social-icon {
@@ -500,6 +508,32 @@ ul {
   user-select: none;
   border: 1px solid rgba(142, 239, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.social-label {
+  position: absolute;
+  right: 70px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8eefff;
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(142, 239, 255, 0.3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(142, 239, 255, 0.5);
+}
+
+.social-icon-wrapper:hover .social-label,
+.social-icon-wrapper:focus-within .social-label {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .social-icon svg {
@@ -578,6 +612,12 @@ ul {
   .social-icon svg {
     width: 22px;
     height: 22px;
+  }
+  
+  .social-label {
+    right: 60px;
+    font-size: 0.75rem;
+    padding: 5px 10px;
   }
   
   .profile-photo {
