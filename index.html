@@ -14,9 +14,32 @@
   <!-- Vanta container (fixed behind hero) -->
   <div id="vanta-hero" aria-hidden="true"></div>
 
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-container">
+      <a href="#hero" class="navbar-logo">
+        <img src="para.jpg" alt="Sanjay" class="navbar-logo-img" />
+        <span>Sanjay</span>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
   <!-- HERO SECTION -->
   <main>
-    <section class="section hero">
+    <section id="hero" class="section hero">
       <div class="hero-inner">
         <img src="para.jpg" alt="Sanjay" class="profile-photo" />
         <h1>Hi, I'm Sanjay</h1>
@@ -26,7 +49,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section class="section about">
+    <section id="about" class="section about">
       <h2>About Me</h2>
       <p>I'm a CS student at Vedam School of Technology focused on Web Development and Competitive Programming. I learn by building projects and improving daily.</p>
       <p>My journey in tech started with curiosity about how things work behind the scenes. From solving complex algorithmic challenges in competitive programming to crafting user-friendly web interfaces, I find joy in the problem-solving process. I believe in writing clean, efficient code and creating experiences that users love.</p>
@@ -34,7 +57,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section class="section skills">
+    <section id="skills" class="section skills">
       <h2>Skills</h2>
       <p><strong>Programming Languages:</strong></p>
       <ul>
@@ -57,7 +80,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section class="section projects">
+    <section id="projects" class="section projects">
       <h2>Projects</h2>
       
       <div class="project-item">
@@ -68,7 +91,7 @@
     </section>
 
     <!-- EDUCATION -->
-    <section class="section education">
+    <section id="education" class="section education">
       <h2>Education</h2>
       <div class="education-item">
         <h3>Vedam School of Technology</h3>
@@ -78,7 +101,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="section contact">
+    <section id="contact" class="section contact">
       <h2>Get In Touch</h2>
       <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!</p>
       <p><strong>Email:</strong> sanjaygit256@gmail.com</p>
