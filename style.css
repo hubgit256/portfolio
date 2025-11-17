@@ -520,20 +520,24 @@ ul {
   opacity: 0;
   transform: translateX(-10px);
   pointer-events: none;
-  padding: 6px 12px;
-  background: rgba(0, 0, 0, 0.7);
+  padding: 0;
+  background: transparent;
   backdrop-filter: blur(10px);
   border-radius: 8px;
-  border: 1px solid rgba(142, 239, 255, 0.3);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  border: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, padding 0.3s ease, background 0.3s ease, border 0.3s ease;
   letter-spacing: 0.5px;
   text-shadow: 0 0 10px rgba(142, 239, 255, 0.5);
+  min-width: 0;
 }
 
-.social-icon-wrapper:hover .social-label,
-.social-icon-wrapper:focus-within .social-label {
+.social-icon-wrapper:hover .social-label:not(:empty),
+.social-icon-wrapper:focus-within .social-label:not(:empty) {
   opacity: 1;
   transform: translateX(0);
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(142, 239, 255, 0.3);
 }
 
 .social-icon svg {
