@@ -185,30 +185,26 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Active section highlighting
-  function updateActiveSection() {
-    const scrollPos = window.pageYOffset + 100; // Offset for navbar
+  // --- Smooth, fast, accurate active section highlight ---
+const observerOptions = {
+  root: null,
+  rootMargin: "-40% 0px -40% 0px",
+  threshold: 0
+};
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute("id");
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+      });
+    }
+  });
+}, observerOptions);
 
-  // Update active section on scroll
-  window.addEventListener('scroll', updateActiveSection);
-  
-  // Update active section on page load
-  updateActiveSection();
+sections.forEach(section => sectionObserver.observe(section));
+
 
   // Smooth scrolling for nav links
   navLinks.forEach(link => {
@@ -222,7 +218,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const targetSection = document.getElementById(targetId);
         
         if (targetSection) {
-          const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+          const navbarHeight = document.querySelector(".navbar").offsetHeight;
+          const offsetTop = targetSection.offsetTop - navbarHeight + 5;
+ // Account for fixed navbar
           window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
