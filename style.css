@@ -851,3 +851,15 @@ ul {
     padding: 20px;
   }
 }
+#dem {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8eefff, #010e33);
+  color: #000;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(237, 26, 212, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
